@@ -13,8 +13,10 @@
     "@gsap/react": "^2.1.1",
     "@react-three/drei": "^9.114.0",
     "@react-three/fiber": "^8.17.9",
+    "@react-three/rapier": "^1.5.0",
     "gsap": "^3.12.5",
-    "lenis": "^1.1.14",
+    "lenis": "^1.1.19",
+    "meshline": "^3.3.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "three": "^0.169.0"

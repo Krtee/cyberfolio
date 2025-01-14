@@ -8,7 +8,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255);
+  color: #0D0D0D;
   background-color: #0D0D0D;
 
   font-synthesis: none;
@@ -18,19 +18,23 @@
 
 }
 @font-face {
-  font-family: "Kelvinized";
-  src: local("Kelvinized"),
-    url("./assets/fonts/Kelvinized.ttf") format("truetype");
-
+  font-family: "Akira";
+  src: local("Akira"),
+    url("./assets/fonts/Akira.otf") format("opentype");
+}
+@font-face {
+  font-family: "Desolation";
+  src: url("./assets/fonts/Desolation.ttf") format("truetype");
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+@font-face {
+  font-family: "Evangelion";
+  src: url("./assets/fonts/Evangelion.otf") format("opentype");
 }
-a:hover {
-  color: #535bf2;
+
+@font-face {
+  font-family: "Chicago";
+  src: url("./assets/fonts/Chicago.ttf") format("truetype");
 }
 
 body {
@@ -42,39 +46,63 @@ body {
   width: 100vw;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
 
-button {
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  cursor: pointer;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-.kelvinized{
-  font-family: "Kelvinized";
+.akira{
+  font-family: "Akira";
   letter-spacing: 0em;
+}
+
+.evangelion-lined{
+  font-family: "Evangelion";
+  letter-spacing: 0em;
+  text-shadow: -1px 0 #EB0202, 0 1px #EB0202, 1px 0 #EB0202, 0 -1px #EB0202;
+  color:    #0D0D0D;
+  font-size: 40em;
+  margin: 0;
+  line-height: 0.91em;
+  height: 465px;
+}
+.evangelion{
+  font-family: "Evangelion";
+  letter-spacing: 0em;
+}
+
+.desolation{
+  font-family: "Desolation";
+  letter-spacing: 0em;
+}
+
+.chicago{
+  font-family: "Chicago";
+  letter-spacing: 0em;
+}
+
+.chicago-lined{
+  font-family: "Chicago";
+  text-stroke:1px #C20F0F ;
+  -webkit-text-stroke: 1px #C20F0F ;
+  color:    transparent;
+  margin: 0;
+}
+
+.lined-black{
+  text-stroke:1px #0D0D0D ;
+  -webkit-text-stroke: 1px #0D0D0D ;
+  color: transparent;
+}
+
+.lined-red{
+  text-stroke:1px #C20F0F ;
+  -webkit-text-stroke: 1px #C20F0F ;
+  color: transparent;
+}
+
+.lined-white{
+  text-stroke:1px white ;
+  -webkit-text-stroke: 1px white ;
+  color: transparent;
+}
+
+.text-white{
+  color:white;
 }

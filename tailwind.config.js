@@ -10,6 +10,10 @@ export default {
         'extra-tight': '0.75',
       }
     },
+    colors: {
+      'cement': '#B7B7B7',
+      'black': '#0D0D0D',
+    }
   },
   plugins: [],
 }
