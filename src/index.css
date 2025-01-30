@@ -15,7 +15,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
 
+*{
+  box-sizing: border-box  ;
 }
 @font-face {
   font-family: "Akira";
@@ -44,8 +48,8 @@ body {
   min-width: 320px;
   min-height: 100vh;
   width: 100vw;
+  
 }
-
 
 .akira{
   font-family: "Akira";
@@ -97,12 +101,16 @@ body {
   color: transparent;
 }
 
-.lined-white{
-  text-stroke:1px white ;
-  -webkit-text-stroke: 1px white ;
+.lined-#B7B7B7{
+  text-stroke:1px #B7B7B7 ;
+  -webkit-text-stroke: 1px #B7B7B7 ;
   color: transparent;
 }
 
-.text-white{
-  color:white;
+.text-#B7B7B7{
+  color: #B7B7B7;
+}
+
+.bg-red{
+  background-color: #800000;
 }

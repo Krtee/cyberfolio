@@ -1,4 +1,4 @@
-import { useGLTF, useTexture } from "@react-three/drei";
+import { useTexture } from "@react-three/drei";
 import {
   extend,
   Object3DNode,
@@ -19,7 +19,7 @@ import {
 import { MeshLineGeometry, MeshLineMaterial } from "meshline";
 import { useEffect, useRef, useState } from "react";
 import { CatmullRomCurve3, Mesh, Quaternion, Vector2, Vector3 } from "three";
-import { TVModel } from "./TV";
+import { TV9 } from "./Tv9";
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 
@@ -160,7 +160,6 @@ export function CableTV() {
     { x: number; y: number; z: number } | false
   >();
   const [hovered, hover] = useState<boolean>(false);
-  const gltf = useGLTF("/tv.glb");
   useEffect(() => {
     if (hovered) {
       document.body.style.cursor = dragged ? "grabbing" : "grab";
@@ -390,7 +389,7 @@ export function CableTV() {
               );
             }}
           >
-            <TVModel />
+            <TV9 />
           </group>
         </RigidBody>
       </group>

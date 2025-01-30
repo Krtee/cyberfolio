@@ -12,7 +12,9 @@ export default {
     },
     colors: {
       'cement': '#B7B7B7',
+      
       'black': '#0D0D0D',
+      "darkred": "#EB0202",
     }
   },
   plugins: [],

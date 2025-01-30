@@ -1,0 +1,45 @@
+import { useEffect } from "react";
+import { useScramble, UseScrambleProps } from "use-scramble";
+
+type Props = {
+  className?: string;
+  shouldReplay?: boolean;
+  text?: string;
+  scrambleOptions?: UseScrambleProps;
+  children?: React.ReactNode;
+};
+
+const ScrambleText = ({
+  text,
+  className,
+  shouldReplay,
+  scrambleOptions,
+  children,
+}: Props) => {
+  const defaultScrambleOptions: UseScrambleProps = {
+    speed: 0.3,
+    tick: 1,
+    step: 1,
+    scramble: 10,
+    seed: 0,
+    overdrive: 60,
+    playOnMount: true,
+    ...scrambleOptions,
+  };
+  const { ref: textRef, replay: textReplay } = useScramble({
+    text: text || (children as string),
+    ...defaultScrambleOptions,
+  });
+
+  useEffect(() => {
+    if (shouldReplay) textReplay();
+  }, [shouldReplay]);
+
+  return (
+    <p className={className} ref={textRef}>
+      {text || children}
+    </p>
+  );
+};
+
+export default ScrambleText;
