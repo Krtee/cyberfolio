@@ -13,7 +13,7 @@ const ProjectSection = ({ title, imagePath, onClick }: Props) => {
 
   return (
     <div
-      className=" relative w-[75vw] overflow-hidden "
+      className=" relative w-[150vw] md:w-[75vw] overflow-hidden "
       onMouseOver={() => setIsHovered(true)}
       onMouseOut={() => setIsHovered(false)}
       onClick={onClick}
@@ -27,11 +27,11 @@ const ProjectSection = ({ title, imagePath, onClick }: Props) => {
             type: "perspective",
             position: [0, 0, 1],
           }}
-          className="relative w-full h-full hover:cursor-pointer transition-all duration-[0.2s] ease-linear hover:scale-110 hover:transition-all hover:duration-[5s] "
+          className=" relative w-full h-full hover:cursor-pointer transition-all duration-[0.2s] ease-linear hover:scale-110 hover:transition-all hover:duration-[5s] "
         >
           <DistortionShader imagePath={imagePath} isHovered={isHovered} />
         </Canvas>
-        <p className="panel evangelion text-cement text-[150px] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 pointer-events-none	">
+        <p className="panel evangelion text-cement text-[100px] md:text-[150px] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 pointer-events-none	">
           {title}
         </p>
       </div>

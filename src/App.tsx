@@ -14,18 +14,34 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(ScrollToPlugin);
 
 function App() {
-  const [showLoading, setShowLoading] = useState(false);
-
+  const [showLoading, setShowLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState<number>(0);
   const lenisRef = useRef<LenisRef>(null);
   useEffect(() => {
     function update(time: number) {
       lenisRef.current?.lenis?.raf(time * 1000);
     }
+
     gsap.ticker.add(update);
     return () => {
       gsap.ticker.remove(update);
     };
   }, []);
+
+  useEffect(() => {
+    if (loadingProgress < 100) {
+      setTimeout(() => {
+        let toAdd = Math.ceil(Math.random() * 20);
+        if (loadingProgress + toAdd > 100) {
+          setLoadingProgress(100);
+        } else {
+          setLoadingProgress(loadingProgress + toAdd);
+        }
+      }, 100);
+    } else {
+      setShowLoading(false);
+    }
+  }, [loadingProgress]);
 
   return (
     <>
@@ -36,12 +52,12 @@ function App() {
         in={showLoading}
         addEndListener={(node, done) => {
           gsap.to(node, {
-            y: showLoading ? 0 : -100,
+            y: showLoading ? 0 : "-100vh",
             onComplete: done,
           });
         }}
       >
-        <LoadingScreen loadingStatus={0} />
+        <LoadingScreen loadingStatus={loadingProgress} />
       </Transition>
       <ReactLenis
         root
@@ -56,9 +72,13 @@ function App() {
         }}
         className="relative"
       >
-        <Stage1 />
-        <Stage2 />
-        <HitMeUpComponent />
+        {!showLoading && (
+          <>
+            <Stage1 />
+            <Stage2 />
+            <HitMeUpComponent />
+          </>
+        )}
       </ReactLenis>
     </>
   );

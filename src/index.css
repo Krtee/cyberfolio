@@ -16,6 +16,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  max-width: 100vw;
 }
 
 *{
@@ -48,69 +49,5 @@ body {
   min-width: 320px;
   min-height: 100vh;
   width: 100vw;
-  
-}
-
-.akira{
-  font-family: "Akira";
-  letter-spacing: 0em;
-}
-
-.evangelion-lined{
-  font-family: "Evangelion";
-  letter-spacing: 0em;
-  text-shadow: -1px 0 #EB0202, 0 1px #EB0202, 1px 0 #EB0202, 0 -1px #EB0202;
-  color:    #0D0D0D;
-  font-size: 40em;
-  margin: 0;
-  line-height: 0.91em;
-  height: 465px;
-}
-.evangelion{
-  font-family: "Evangelion";
-  letter-spacing: 0em;
-}
-
-.desolation{
-  font-family: "Desolation";
-  letter-spacing: 0em;
-}
-
-.chicago{
-  font-family: "Chicago";
-  letter-spacing: 0em;
-}
-
-.chicago-lined{
-  font-family: "Chicago";
-  text-stroke:1px #C20F0F ;
-  -webkit-text-stroke: 1px #C20F0F ;
-  color:    transparent;
-  margin: 0;
-}
-
-.lined-black{
-  text-stroke:1px #0D0D0D ;
-  -webkit-text-stroke: 1px #0D0D0D ;
-  color: transparent;
-}
-
-.lined-red{
-  text-stroke:1px #C20F0F ;
-  -webkit-text-stroke: 1px #C20F0F ;
-  color: transparent;
-}
-
-.lined-#B7B7B7{
-  text-stroke:1px #B7B7B7 ;
-  -webkit-text-stroke: 1px #B7B7B7 ;
-  color: transparent;
-}
-
-.text-#B7B7B7{
-  color: #B7B7B7;
-}
-
-.bg-red{
-  background-color: #800000;
+  overflow-y: hidden;
 }

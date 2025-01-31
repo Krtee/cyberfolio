@@ -13,7 +13,7 @@ const DistortionShaderMaterial: typeof ShaderMaterial & {
     tDiffuse: new Texture(),
     glitchIntensity: 0.0,
     uBrightness: 1.0,
-    uContrast: 0.5,
+    uContrast: 0.7,
   },
   `
     varying vec2 vUv;

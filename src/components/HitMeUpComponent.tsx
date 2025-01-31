@@ -3,9 +3,7 @@ import gsap from "gsap";
 import { useRef, useState } from "react";
 import ScrambleText from "./ScrambleText";
 
-type Props = {};
-
-const HitMeUpComponent = (props: Props) => {
+const HitMeUpComponent = () => {
   const [showText, setShowText] = useState(false);
   const scrambleWrapperRef = useRef<HTMLDivElement>(null);
 
@@ -15,6 +13,7 @@ const HitMeUpComponent = (props: Props) => {
         trigger: scrambleWrapperRef.current,
         start: "top center",
         onEnter: () => setShowText(true),
+        onLeaveBack: () => setShowText(false),
       },
     });
   });
@@ -25,7 +24,7 @@ const HitMeUpComponent = (props: Props) => {
       ref={scrambleWrapperRef}
     >
       <ScrambleText
-        className="akira text-9xl m-auto"
+        className="akira text-5xl md:text-9xl m-auto"
         text={showText ? "HIT ME UP" : ""}
         scrambleOptions={{ playOnMount: false, speed: 0.6 }}
       />

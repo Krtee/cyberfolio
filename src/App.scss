@@ -8,12 +8,27 @@
 
 .header{
   &__jobname{
-    text-align: center;
-    height: 10.438cqw;
-    font-size: 100px;
-    line-height: 13.438cqw;
-    font-size: 14.438cqw;
-  }
+      &--desktop{
+        height: 10.438cqw;
+      font-size: 100px;
+      line-height: 13.438cqw;
+      font-size: 14.438cqw; 
+      }
+      &__first--mobile{
+        height: 20.938cqw;
+        font-size: 100px;
+        line-height: 30.438cqw;
+        font-size: 30.538cqw; 
+      }
+      &__second--mobile{
+        height: 22.438cqw;
+        font-size: 100px;
+        line-height: 30.438cqw;
+        font-size: 29.138cqw; 
+      }
+
+    }
+
 }
 .text-shadow{
   text-shadow: 10px 4px black;
@@ -78,6 +93,69 @@
  .block-shadow{
   text-shadow: 10px 10px black;
  }
+
+ .akira{
+  font-family: "Akira";
+  letter-spacing: 0em;
+}
+
+.evangelion-lined{
+  font-family: "Evangelion";
+  letter-spacing: 0em;
+  text-shadow: -1px 0 #EB0202, 0 1px #EB0202, 1px 0 #EB0202, 0 -1px #EB0202;
+  color:    #0D0D0D;
+  margin: 0;
+  line-height: 0.91em;
+  height: 465px;
+}
+.evangelion{
+  font-family: "Evangelion";
+  letter-spacing: 0em;
+}
+
+.desolation{
+  font-family: "Desolation";
+  letter-spacing: 0em;
+}
+
+.chicago{
+  font-family: "Chicago";
+  letter-spacing: 0em;
+}
+
+.chicago-lined{
+  font-family: "Chicago";
+  text-stroke:1px #C20F0F ;
+  -webkit-text-stroke: 1px #C20F0F ;
+  color:    transparent;
+  margin: 0;
+}
+
+.lined-black{
+  text-stroke:1px #0D0D0D ;
+  -webkit-text-stroke: 1px #0D0D0D ;
+  color: transparent;
+}
+
+.lined-red{
+  text-stroke:1px #C20F0F ;
+  -webkit-text-stroke: 1px #C20F0F ;
+  color: transparent;
+}
+
+.lined-#B7B7B7{
+  text-stroke:1px #B7B7B7 ;
+  -webkit-text-stroke: 1px #B7B7B7 ;
+  color: transparent;
+}
+
+.text-#B7B7B7{
+  color: #B7B7B7;
+}
+
+.bg-red{
+  background-color: #800000;
+}
 
  .corner-box{
     --b: 10px;   /* thickness of the border */

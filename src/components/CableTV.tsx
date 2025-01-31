@@ -1,11 +1,5 @@
 import { useTexture } from "@react-three/drei";
-import {
-  extend,
-  Object3DNode,
-  ThreeEvent,
-  useFrame,
-  useThree,
-} from "@react-three/fiber";
+import { extend, Object3DNode, useFrame, useThree } from "@react-three/fiber";
 import {
   BallCollider,
   CuboidCollider,
@@ -19,7 +13,7 @@ import {
 import { MeshLineGeometry, MeshLineMaterial } from "meshline";
 import { useEffect, useRef, useState } from "react";
 import { CatmullRomCurve3, Mesh, Quaternion, Vector2, Vector3 } from "three";
-import { TV9 } from "./Tv9";
+import { TV10 } from "./Tv10";
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 
@@ -48,19 +42,12 @@ export function CableTV() {
   const mainCableJ2 = useRef<RapierRigidBody>(null);
   const mainCableJ3 = useRef<RapierRigidBody>(null);
   const tv = useRef<RapierRigidBody>(null);
-  const texture = useTexture({
-    map: "textures/cable/metal_0040_color_1k.jpg",
-    normalMap: "textures/cable/metal_0040_normal_1k.png",
-    roughnessMap: "textures/cable/metal_0040_roughness_1k.jpg",
-    aoMap: "textures/cable/metal_0040_ao_1k.jpg",
-    displacementMap: "textures/cable/metal_0040_height_1k.png",
-  });
+
   const texture2 = useTexture("textures/cableMat.png");
-  const texture3 = useTexture("textures/cable2.png");
-  const textureAlpha = useTexture("textures/alpha.png");
+  const texture3 = useTexture("textures/wires.png");
+  const textureAlpha = useTexture("textures/alpha4.png");
   const textureAlpha2 = useTexture("textures/alpha3.png");
 
-  const meshLineTexture = useTexture("textures/cable/metal_0040_color_1k.jpg");
   const [curveMainCable] = useState(
     () =>
       new CatmullRomCurve3([
@@ -96,10 +83,10 @@ export function CableTV() {
   );
   // second cable joint configuration
   useRopeJoint(secondCableFixedPoint, secondCableJ1, [[0, 0, 0], [0, 0, 0], 1.5]) // prettier-ignore
-  useRopeJoint(secondCableJ1, secondCableJ2, [[0, 0, 0], [0, 0, 0], 1]) // prettier-ignore
-  useRopeJoint(secondCableJ2, secondCableJ3, [[0, 0, 0], [0, 0, 0], 1]) // prettier-ignore
-  useRopeJoint(secondCableJ3, secondCableJ4, [[0, 0, 0], [0, 0, 0], 1]) // prettier-ignore
-  useSphericalJoint(secondCableJ4, tv, [[0, 0, 0], [1.8, 0.5, -3]]) // prettier-ignore
+  useRopeJoint(secondCableJ1, secondCableJ2, [[0, 0, 0], [0, 0, 0], 1.5]) // prettier-ignore
+  useRopeJoint(secondCableJ2, secondCableJ3, [[0, 0, 0], [0, 0, 0], 1.5]) // prettier-ignore
+  useRopeJoint(secondCableJ3, secondCableJ4, [[0, 0, 0], [0, 0, 0], 1.5]) // prettier-ignore
+  useSphericalJoint(secondCableJ4, tv, [[0, 0, 0], [0.4, 0.5, -2]]) // prettier-ignore
   curveSecondCable.curveType = "chordal";
 
   // third cable
@@ -121,7 +108,7 @@ export function CableTV() {
   useRopeJoint(thirdCableFixedPoint, thirdCableJ1, [[0, 0, 0], [0, 0, 0], 1.2]) // prettier-ignore
   useRopeJoint(thirdCableJ1, thirdCableJ2, [[0, 0, 0], [0, 0, 0], 1.2]) // prettier-ignore
   useRopeJoint(thirdCableJ2, thirdCableJ3, [[0, 0, 0], [0, 0, 0], 1.2]) // prettier-ignore
-  useRopeJoint(thirdCableJ3, tv, [[0, 0, 0], [-0.5, 1, -0.5],1]) // prettier-ignore
+  useRopeJoint(thirdCableJ3, tv, [[0, 0, 0], [-0.5, 1, -2],1]) // prettier-ignore
   curveThirdCable.curveType = "chordal";
 
   // fourth cable
@@ -131,25 +118,40 @@ export function CableTV() {
   const fourthCableJ2 = useRef<RapierRigidBody>(null);
 
   const [curveFourthCable] = useState(
-    () => new CatmullRomCurve3([new Vector3(), new Vector3(), new Vector3()])
+    () =>
+      new CatmullRomCurve3([
+        new Vector3(),
+        new Vector3(),
+        new Vector3(),
+        new Vector3(),
+      ])
   );
   // fourth cable joint configuration
   useRopeJoint(fourthCableFixedPoint, fourthCableJ1, [[0, 0, 0], [0, 0, 0], 1]) // prettier-ignore
   useRopeJoint(fourthCableJ1, fourthCableJ2, [[0, 0, 0], [0, 0, 0], 1]) // prettier-ignore
-  useRopeJoint(fourthCableJ2, tv, [[0, 0, 0], [0.5, 1, 0.5],1]) // prettier-ignore
+  useRopeJoint(fourthCableJ2, tv, [[0, 0, 0], [0.5, 1, -1],1]) // prettier-ignore
 
   // fifth cable
   const fifthCable = useRef<Mesh>(null);
+  const fifthCableFixedPoint = useRef<RapierRigidBody>(null);
   const fifthCableJ1 = useRef<RapierRigidBody>(null);
   const fifthCableJ2 = useRef<RapierRigidBody>(null);
-
+  const fifthCableJ3 = useRef<RapierRigidBody>(null);
   const [curveFifthCable] = useState(
-    () => new CatmullRomCurve3([new Vector3(), new Vector3(), new Vector3()])
+    () =>
+      new CatmullRomCurve3([
+        new Vector3(),
+        new Vector3(),
+        new Vector3(),
+        new Vector3(),
+      ])
   );
   // fifth cable joint configuration
-  useRopeJoint(tv, fifthCableJ1, [[0.5, -1, 1], [0, 0, 0], 1]) // prettier-ignore
-  useRopeJoint(fifthCableJ1, fifthCableJ2, [[0, 0, 0], [0, 0, 0], 1]) // prettier-ignore
-  useRopeJoint(fifthCableJ2, tv, [[0, 0, 0], [-0.5, -1, -0.5],1]) // prettier-ignore
+  useSphericalJoint(tv, fifthCableFixedPoint, [[-0.1, -2.6, -2], [0, 0, 0]]) // prettier-ignore
+  useRopeJoint(fifthCableFixedPoint, fifthCableJ1, [[0.5, -2, 1], [0, 0, 0], 2]) // prettier-ignore
+  useRopeJoint(fifthCableJ1, fifthCableJ2, [[0, 0, 0], [0, 0, 0], 1.5]) // prettier-ignore
+  useRopeJoint(fifthCableJ2, fifthCableJ3, [[0, 0, 0], [0, 0, 0],2]) // prettier-ignore
+  useSphericalJoint(fifthCableJ3,tv, [[0, 0, 0], [-1.5, 0, -3]]) // prettier-ignore
 
   const vec = new Vector3();
   const ang = new Vector3();
@@ -167,7 +169,7 @@ export function CableTV() {
     }
   }, [hovered, dragged]);
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
     if (dragged) {
       vec.set(state.pointer.x, state.pointer.y, 0.5).unproject(state.camera);
       dir.copy(vec).sub(state.camera.position).normalize();
@@ -253,6 +255,32 @@ export function CableTV() {
 
       geometry.setPoints(curveThirdCable.getPoints(30));
     }
+
+    if (fourthCableFixedPoint.current) {
+      // Calculate catmul curve of fourth cable
+      curveFourthCable.points[0].copy(tv.current!.translation());
+      curveFourthCable.points[1].copy(fourthCableJ2.current!.translation());
+      curveFourthCable.points[2].copy(fourthCableJ1.current!.translation());
+      curveFourthCable.points[3].copy(
+        fourthCableFixedPoint.current.translation()
+      );
+
+      const geometry = fourthCable.current!.geometry as MeshLineGeometry;
+
+      geometry.setPoints(curveFourthCable.getPoints(30));
+    }
+
+    if (tv.current) {
+      curveFifthCable.points[0].copy(
+        fifthCableFixedPoint.current!.translation()
+      );
+      curveFifthCable.points[1].copy(fifthCableJ1.current!.translation());
+      curveFifthCable.points[2].copy(fifthCableJ2.current!.translation());
+      curveFifthCable.points[3].copy(fifthCableJ3.current!.translation());
+
+      const geometry = fifthCable.current!.geometry as MeshLineGeometry;
+      geometry.setPoints(curveFifthCable.getPoints(30));
+    }
   });
 
   return (
@@ -308,7 +336,7 @@ export function CableTV() {
             ref={thirdCableFixedPoint}
             {...segmentProps}
             type="fixed"
-            position={[-3, 0, -1]}
+            position={[-3, 0, -3]}
           />
           <RigidBody
             position={[-1, 0, -1]}
@@ -338,7 +366,7 @@ export function CableTV() {
             ref={fourthCableFixedPoint}
             {...segmentProps}
             type="fixed"
-            position={[0.5, 0, 0.5]}
+            position={[0.5, 0, -2]}
           />
           <RigidBody
             position={[1, 0, -1]}
@@ -356,15 +384,25 @@ export function CableTV() {
           </RigidBody>
         </group>
         <group name="fifthCable">
+          <RigidBody
+            ref={fifthCableFixedPoint}
+            {...segmentProps}
+            position={[1, 0, -1]}
+          >
+            <BallCollider args={[0.1]} />
+          </RigidBody>
           <RigidBody position={[1, 0, -1]} ref={fifthCableJ1} {...segmentProps}>
             <BallCollider args={[0.1]} />
           </RigidBody>
           <RigidBody position={[1, 0, -1]} ref={fifthCableJ2} {...segmentProps}>
             <BallCollider args={[0.1]} />
           </RigidBody>
+          <RigidBody position={[0, 0, 0]} ref={fifthCableJ3} {...segmentProps}>
+            <BallCollider args={[0.1]} />
+          </RigidBody>
         </group>
         <RigidBody
-          position={[0.5, 0, 0]}
+          position={[0.5, 3, 0]}
           ref={tv}
           {...segmentProps}
           type={dragged ? "kinematicPosition" : "dynamic"}
@@ -376,12 +414,12 @@ export function CableTV() {
           <group
             onPointerOver={() => hover(true)}
             onPointerOut={() => hover(false)}
-            onPointerUp={(e: ThreeEvent<PointerEvent>) => {
-              //e.target.releasePointerCapture(e.pointerId);
+            onPointerUp={(e: any) => {
+              e.target!.releasePointerCapture(e.pointerId);
               drag(false);
             }}
-            onPointerDown={(e) => {
-              //e.target.setPointerCapture(e.pointerId),
+            onPointerDown={(e: any) => {
+              e.target!.setPointerCapture(e.pointerId);
               drag(
                 new Vector3()
                   .copy(e.point)
@@ -389,7 +427,7 @@ export function CableTV() {
               );
             }}
           >
-            <TV9 />
+            <TV10 />
           </group>
         </RigidBody>
       </group>
@@ -400,7 +438,7 @@ export function CableTV() {
           resolution={new Vector2(width, height)}
           useMap={1}
           map={texture3}
-          repeat={new Vector2(1, 1)}
+          repeat={new Vector2(0.5, 1)}
           lineWidth={2}
           alphaMap={textureAlpha}
           useAlphaMap={1}
@@ -422,6 +460,34 @@ export function CableTV() {
         />
       </mesh>
       <mesh ref={thirdCable}>
+        <meshLineGeometry />
+        <meshLineMaterial
+          depthTest={true}
+          resolution={new Vector2(width, height)}
+          useMap={1}
+          map={texture2}
+          repeat={new Vector2(1, 1)}
+          lineWidth={1}
+          alphaMap={textureAlpha2}
+          useAlphaMap={1}
+          transparent
+        />
+      </mesh>
+      <mesh ref={fourthCable}>
+        <meshLineGeometry />
+        <meshLineMaterial
+          depthTest={true}
+          resolution={new Vector2(width, height)}
+          useMap={1}
+          map={texture2}
+          repeat={new Vector2(1, 1)}
+          lineWidth={1}
+          alphaMap={textureAlpha2}
+          useAlphaMap={1}
+          transparent
+        />
+      </mesh>
+      <mesh ref={fifthCable}>
         <meshLineGeometry />
         <meshLineMaterial
           depthTest={true}

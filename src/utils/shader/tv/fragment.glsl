@@ -79,7 +79,7 @@ float rand(vec2 co) {
 void main() {
     vec2 fragCoord = vUv * iResolution;
     vec2 tempUv = fragCoord.xy / iResolution.xy;
-    vec2 uv = vec2(1.0 - tempUv.s, tempUv.t);
+    vec2 uv = vec2(tempUv.s, tempUv.t);
     float time = iTime * 2.0;
 
     // Create large, incidental noise waves

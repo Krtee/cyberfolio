@@ -2,7 +2,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useLenis } from "lenis/react";
 import { useRef, useState } from "react";
-import { useGlitch } from "react-powerglitch";
 import { useScramble } from "use-scramble";
 import { createClipPathRectangle, createClipPathSquare } from "../utils/helper";
 import AboutMePopUpContent from "./AboutMePopUpContent";
@@ -13,8 +12,6 @@ import FishSauceContent from "./FishSauceContent";
 import GlitchPopUp from "./GlitchPopUp";
 import ProjectSection from "./ProjectSection";
 
-type Props = {};
-
 enum Project {
   BÜFFEL = "BÜFFEL",
   MONSTER_BABY = "MONSTER BABY",
@@ -22,10 +19,17 @@ enum Project {
   DEVDUCK_CLI = "DEVDUCK CLI",
 }
 
-const Stage2 = (props: Props) => {
-  const textRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
+const Stage2 = () => {
+  const textRefs = [
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+    useRef<HTMLDivElement>(null),
+  ];
   const containerRef = useRef(null);
   let direction = -1;
+  const scrollTextClasses: string =
+    "display flex text-[10em] leading-[0.91em] h-[120px] md:text-[40em] md:leading-[0.91em] md:h-[465px] text-center evangelion-lined w-max uppercase ";
   const projectsScrollOuterRef = useRef<HTMLDivElement>(null);
   const projectsScrollInnerRef = useRef<HTMLDivElement>(null);
   const textContainerRef = useRef<HTMLDivElement>(null);
@@ -37,25 +41,8 @@ const Stage2 = (props: Props) => {
   const [projectPopUpOpen, setProjectPopUpOpen] = useState<Project | false>(
     false
   );
-  const glitch = useGlitch({
-    playMode: "always",
-    timing: { duration: 250, iterations: Infinity },
-    glitchTimeSpan: { start: 0, end: 0.4 },
-    slice: {
-      hueRotate: true,
-      count: 10,
-      velocity: 0.5,
-      maxHeight: 0.01,
-      minHeight: 0.01,
-    },
-    shake: {
-      velocity: 5,
-      amplitudeX: 0.02,
-      amplitudeY: 0.02,
-    },
-  });
 
-  const { ref: centerTextRef, replay: centerTextReplay } = useScramble({
+  const { ref: centerTextRef } = useScramble({
     text: aboutMePopUpIsOpen ? "" : "Click here to find out more about me",
     speed: 0.6,
     tick: 1,
@@ -77,7 +64,7 @@ const Stage2 = (props: Props) => {
             end: "bottom top",
             onUpdate: (e) => (direction = e.direction * (i % 2 === 0 ? -1 : 1)),
           },
-          x: `${direction < 0 ? "-40" : "-10"}%`,
+          x: `${direction * i < 0 ? "0" : "-40"}%`,
         });
       });
     },
@@ -95,7 +82,7 @@ const Stage2 = (props: Props) => {
     gsap
       .timeline()
       .to(aboutMeMaskRef.current, {
-        clipPath: createClipPathRectangle(25),
+        clipPath: createClipPathRectangle(window.innerWidth > 768 ? 25 : 50),
         duration: 0.5,
         ease: "power2.out",
       })
@@ -116,7 +103,7 @@ const Stage2 = (props: Props) => {
     gsap
       .timeline()
       .to(aboutMeMaskRef.current, {
-        clipPath: createClipPathSquare(25),
+        clipPath: createClipPathSquare(window.innerWidth > 768 ? 25 : 50),
         duration: 0.5,
         ease: "power2.out",
       })
@@ -133,7 +120,11 @@ const Stage2 = (props: Props) => {
           scrollTrigger: {
             trigger: aboutMeMaskRef.current,
             start: `center +${window.innerHeight / 2} center `,
-            end: "center -500  top ",
+            end: `center -${
+              window.innerHeight / 2 -
+              window.innerWidth / 10 -
+              (window.innerWidth > 768 ? 0 : 280)
+            }  top `,
             pin: true,
             pinType: "fixed",
             pinSpacing: false,
@@ -150,9 +141,13 @@ const Stage2 = (props: Props) => {
           scrollTrigger: {
             trigger: projectsScrollOuterRef.current,
             pin: true,
-            scrub: 1,
-            start: "top top",
-            end: () => "+=" + projectsScrollOuterRef.current?.offsetWidth,
+            scrub: 0,
+            start: "bottom bottom",
+            end: () =>
+              "+=" +
+              (window.innerWidth > 768
+                ? window.innerWidth * 3 + 100
+                : window.innerWidth * 6 + 100),
           },
           x: () =>
             -1 *
@@ -166,35 +161,57 @@ const Stage2 = (props: Props) => {
   return (
     <div ref={containerRef} className="relative">
       <div className="pt-[20%] pb-[20%] px-[10%] max-w-fit">
-        <p className="chicago-lined text-[30em] tracking-[-0.1em] leading-[0.8] text-center pr-5">
+        <p className="chicago-lined text-[20em] py-[20%] md:py-[00%] md:text-[30em] tracking-[-0.1em] leading-[0.8] text-center pr-5">
           02
         </p>
       </div>
       <div className="overflow-hidden" ref={textContainerRef}>
-        {textRefs.map((ref, i) => (
-          <div
-            className={`display flex evangelion-lined w-max ${
-              i % 2 === 0 ? "translate-x-[10%]" : "translate-x-[-60%]"
-            }`}
-            ref={ref}
-            key={i}
-          >
-            <p>FRONTEND</p>
-            <p>BACKEND</p>
-            <p>CLOUD</p>
-            <p>FRONTEND</p>
-            <p>BACKEND</p>
-            <p>CLOUD</p>
-          </div>
-        ))}
+        <div
+          className={scrollTextClasses + ` translate-x-[0%]`}
+          ref={textRefs[0]}
+        >
+          <p>FRONTEND</p>
+          <p>BACKEND</p>
+          <p>CLOUD</p>
+          <p>FRONTEND</p>
+          <p>BACKEND</p>
+          <p>CLOUD</p>
+        </div>
+        <div
+          className={scrollTextClasses + ` translate-x-[-80%]`}
+          ref={textRefs[1]}
+        >
+          <p>React</p>
+          <p>Angular</p>
+          <p>TypeScript</p>
+          <p>NextJS</p>
+        </div>
+        <div
+          className={scrollTextClasses + ` translate-x-[0%]`}
+          ref={textRefs[2]}
+        >
+          <p>SpringBoot</p>
+          <p>Java</p>
+          <p>Google Cloud</p>
+          <p>SpringBoot</p>
+        </div>
+        <div
+          className={scrollTextClasses + ` translate-x-[-60%]`}
+          ref={textRefs[3]}
+        >
+          <p>Blender</p>
+          <p>NodeJS</p>
+          <p>Docker</p>
+        </div>
       </div>
 
       <div className="flex justify-center relative h-screen" ref={aboutMeRef}>
         <p
-          className={` akira text-cement text-[70px] pt-96 pb-96 leading-[0.9] text-balance h-fit`}
+          className={` akira text-cement text-[2.5em] md:text-[70px] py-48 md:py-96  leading-[0.9] text-balance h-fit`}
         >
-          Hi ! My name is Minh Vu. I'm a full stack developer based in
-          Stuttgart, Germany. Feel free to contact me !
+          Hi ! My na&shy;me is Minh Vu. I'm a full stack
+          de&shy;ve&shy;lo&shy;per ba&shy;sed in Stutt&shy;gart,
+          Ger&shy;ma&shy;ny. Feel free to con&shy;tact me !
         </p>
 
         <div
@@ -205,21 +222,23 @@ const Stage2 = (props: Props) => {
             ref={aboutMeMaskRef}
             className={`relative top-0 left-0 bg-red w-screen h-screen overflow-auto  overscroll-contain }`}
             style={{
-              clipPath: createClipPathSquare(25),
+              clipPath: createClipPathSquare(window.innerWidth > 768 ? 25 : 50),
             }}
             onClick={() => {
               !aboutMePopUpIsOpen && onOpenAboutMePopUp();
             }}
-            data-lenis-prevent
           >
             <AboutMePopUpContent
               isOpen={aboutMePopUpIsOpen}
               onClose={onCloseAboutMePopUp}
             />
             <div
-              className={` absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] p-10 w-[25vw] flex justify-center items-center  `}
+              className={` absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] p-5 md:p-10 w-50 md:w-[25vw] flex justify-center items-center  `}
             >
-              <p className="akira text-3xl text-center" ref={centerTextRef}>
+              <p
+                className="akira text-m md:text-3xl text-center leading-[0.9] "
+                ref={centerTextRef}
+              >
                 Click here to find out more about me
               </p>
             </div>
@@ -232,7 +251,7 @@ const Stage2 = (props: Props) => {
         ref={projectsScrollOuterRef}
       >
         <div
-          className="flex flex-row h-screen w-max relative"
+          className="flex flex-row h-[70vh] md:h-screen w-max relative"
           ref={projectsScrollInnerRef}
         >
           <ProjectSection
