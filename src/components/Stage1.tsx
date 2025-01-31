@@ -103,50 +103,9 @@ const Stage1 = () => {
                 scramble: 10,
               }}
             >
-              Wel&shy;come to my port&shy;folio! I'm Minh, a
-              pas&shy;sio&shy;nate and de&shy;dicated web de&shy;ve&shy;loper
-              with a strong fo&shy;cus on crea&shy;ting in&shy;tui&shy;ti&shy;ve
-              and dy&shy;na&shy;mic di&shy;gi&shy;tal
-              ex&shy;pe&shy;rien&shy;ces. I spe&shy;cia&shy;lize in
-              front-&shy;end de&shy;ve&shy;lop&shy;ment. Wel&shy;come to my
-              port&shy;folio! I'm Minh, a pas&shy;sio&shy;nate and
-              de&shy;dicated web de&shy;ve&shy;loper with a strong fo&shy;cus on
-              crea&shy;ting in&shy;tui&shy;ti&shy;ve and dy&shy;na&shy;mic
-              di&shy;gi&shy;tal ex&shy;pe&shy;rien&shy;ces. I
-              spe&shy;cia&shy;lize in front-&shy;end
-              de&shy;ve&shy;lop&shy;ment.Wel&shy;come to my port&shy;folio! I'm
-              Minh, a pas&shy;sio&shy;nate and de&shy;dicated web
-              de&shy;ve&shy;loper with a strong fo&shy;cus on crea&shy;ting
-              in&shy;tui&shy;ti&shy;ve and dy&shy;na&shy;mic di&shy;gi&shy;tal
-              ex&shy;pe&shy;rien&shy;ces. I spe&shy;cia&shy;lize in
-              front-&shy;end de&shy;ve&shy;lop&shy;ment.Wel&shy;come to my
-              port&shy;folio! I'm Minh, a pas&shy;sio&shy;nate and
-              de&shy;dicated web de&shy;ve&shy;loper with a strong fo&shy;cus on
-              crea&shy;ting in&shy;tui&shy;ti&shy;ve and dy&shy;na&shy;mic
-              di&shy;gi&shy;tal ex&shy;pe&shy;rien&shy;ces. I
-              spe&shy;cia&shy;lize in front-&shy;end
-              de&shy;ve&shy;lop&shy;ment.Wel&shy;come to my port&shy;folio! I'm
-              Minh, a pas&shy;sio&shy;nate and de&shy;dicated web
-              de&shy;ve&shy;loper with a strong fo&shy;cus on crea&shy;ting
-              in&shy;tui&shy;ti&shy;ve and dy&shy;na&shy;mic di&shy;gi&shy;tal
-              ex&shy;pe&shy;rien&shy;ces. I spe&shy;cia&shy;lize in
-              front-&shy;end de&shy;ve&shy;lop&shy;ment.Wel&shy;come to my
-              port&shy;folio! I'm Minh, a pas&shy;sio&shy;nate and
-              de&shy;dicated web de&shy;ve&shy;loper with a strong fo&shy;cus on
-              crea&shy;ting in&shy;tui&shy;ti&shy;ve and dy&shy;na&shy;mic
-              di&shy;gi&shy;tal ex&shy;pe&shy;rien&shy;ces. I
-              spe&shy;cia&shy;lize in front-&shy;end de&shy;ve&shy;lop&shy;ment.
-              Wel&shy;come to my port&shy;folio! I'm Minh, a
-              pas&shy;sio&shy;nate and de&shy;dicated web de&shy;ve&shy;loper
-              with a strong fo&shy;cus on crea&shy;ting in&shy;tui&shy;ti&shy;ve
-              and dy&shy;na&shy;mic di&shy;gi&shy;tal
-              ex&shy;pe&shy;rien&shy;ces. I spe&shy;cia&shy;lize in
-              front-&shy;end de&shy;ve&shy;lop&shy;ment. Wel&shy;come to my
-              port&shy;folio! I'm Minh, a pas&shy;sio&shy;nate and
-              de&shy;dicated web de&shy;ve&shy;loper with a strong fo&shy;cus on
-              crea&shy;ting in&shy;tui&shy;ti&shy;ve and dy&shy;na&shy;mic
-              di&shy;gi&shy;tal ex&shy;pe&shy;rien&shy;ces. I
-              spe&shy;cia&shy;lize in front-&shy;end de&shy;ve&shy;lop&shy;ment.
+              {" Wel&shy;come to my port&shy;folio! I'm Minh, a pas&shy;sio&shy;nate and de&shy;dicated web de&shy;ve&shy;loper with a strong fo&shy;cus on crea&shy;ting in&shy;tui&shy;ti&shy;ve and dy&shy;na&shy;mic di&shy;gi&shy;tal ex&shy;pe&shy;rien&shy;ces. I spe&shy;cia&shy;lize in front-&shy;end de&shy;ve&shy;lop&shy;ment.".repeat(
+                20
+              )}
             </ScrambleText>
           </div>
           <p className=" desolation lined-black text-[5em] leading-[0.7em] md:text-[12em] md:leading-[0.8] text-center whitespace-nowrap">

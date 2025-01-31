@@ -64,7 +64,7 @@ const Stage2 = () => {
             end: "bottom top",
             onUpdate: (e) => (direction = e.direction * (i % 2 === 0 ? -1 : 1)),
           },
-          x: `${direction * i < 0 ? "0" : "-40"}%`,
+          x: `${direction * (i % 2 === 0 ? -1 : 1) < 0 ? "0" : "-40"}%`,
         });
       });
     },
