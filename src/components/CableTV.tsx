@@ -1,5 +1,11 @@
 import { useTexture } from "@react-three/drei";
-import { extend, Object3DNode, useFrame, useThree } from "@react-three/fiber";
+import {
+  extend,
+  Object3DNode,
+  ThreeEvent,
+  useFrame,
+  useThree,
+} from "@react-three/fiber";
 import {
   BallCollider,
   CuboidCollider,
@@ -10,6 +16,7 @@ import {
   useRopeJoint,
   useSphericalJoint,
 } from "@react-three/rapier";
+import { useLenis } from "lenis/react";
 import { MeshLineGeometry, MeshLineMaterial } from "meshline";
 import { useEffect, useRef, useState } from "react";
 import { CatmullRomCurve3, Mesh, Quaternion, Vector2, Vector3 } from "three";
@@ -34,6 +41,7 @@ export function CableTV() {
   };
 
   const { width, height } = useThree((state) => state.size);
+  const lenis = useLenis();
 
   // main cable
   const mainCable = useRef<any>(null);
@@ -43,10 +51,10 @@ export function CableTV() {
   const mainCableJ3 = useRef<RapierRigidBody>(null);
   const tv = useRef<RapierRigidBody>(null);
 
-  const texture2 = useTexture("textures/cableMat.png");
-  const texture3 = useTexture("textures/wires.png");
-  const textureAlpha = useTexture("textures/alpha4.png");
-  const textureAlpha2 = useTexture("textures/alpha3.png");
+  const smallCables = useTexture("textures/cableMat.png");
+  const mainCableTexture = useTexture("textures/wires.png");
+  const smallCableAlpha = useTexture("textures/alpha4.png");
+  const mainCableAlpha = useTexture("textures/alpha3.png");
 
   const [curveMainCable] = useState(
     () =>
@@ -414,12 +422,15 @@ export function CableTV() {
           <group
             onPointerOver={() => hover(true)}
             onPointerOut={() => hover(false)}
-            onPointerUp={(e: any) => {
-              e.target!.releasePointerCapture(e.pointerId);
+            onPointerUp={(e: ThreeEvent<PointerEvent>) => {
+              lenis?.start();
+              e.stopPropagation();
               drag(false);
             }}
-            onPointerDown={(e: any) => {
-              e.target!.setPointerCapture(e.pointerId);
+            onPointerDown={(e: ThreeEvent<PointerEvent>) => {
+              lenis?.stop();
+
+              e.stopPropagation();
               drag(
                 new Vector3()
                   .copy(e.point)
@@ -437,10 +448,10 @@ export function CableTV() {
           depthTest={true}
           resolution={new Vector2(width, height)}
           useMap={1}
-          map={texture3}
+          map={mainCableTexture}
           repeat={new Vector2(0.5, 1)}
           lineWidth={2}
-          alphaMap={textureAlpha}
+          alphaMap={smallCableAlpha}
           useAlphaMap={1}
           transparent
         />
@@ -451,10 +462,10 @@ export function CableTV() {
           depthTest={true}
           resolution={new Vector2(width, height)}
           useMap={1}
-          map={texture2}
+          map={smallCables}
           repeat={new Vector2(1, 1)}
           lineWidth={1}
-          alphaMap={textureAlpha2}
+          alphaMap={mainCableAlpha}
           useAlphaMap={1}
           transparent
         />
@@ -465,10 +476,10 @@ export function CableTV() {
           depthTest={true}
           resolution={new Vector2(width, height)}
           useMap={1}
-          map={texture2}
+          map={smallCables}
           repeat={new Vector2(1, 1)}
           lineWidth={1}
-          alphaMap={textureAlpha2}
+          alphaMap={mainCableAlpha}
           useAlphaMap={1}
           transparent
         />
@@ -479,10 +490,10 @@ export function CableTV() {
           depthTest={true}
           resolution={new Vector2(width, height)}
           useMap={1}
-          map={texture2}
+          map={smallCables}
           repeat={new Vector2(1, 1)}
           lineWidth={1}
-          alphaMap={textureAlpha2}
+          alphaMap={mainCableAlpha}
           useAlphaMap={1}
           transparent
         />
@@ -493,10 +504,10 @@ export function CableTV() {
           depthTest={true}
           resolution={new Vector2(width, height)}
           useMap={1}
-          map={texture2}
+          map={smallCables}
           repeat={new Vector2(1, 1)}
           lineWidth={1}
-          alphaMap={textureAlpha2}
+          alphaMap={mainCableAlpha}
           useAlphaMap={1}
           transparent
         />

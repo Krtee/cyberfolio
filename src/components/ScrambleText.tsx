@@ -8,6 +8,7 @@ type Props = {
   scrambleOptions?: UseScrambleProps;
   children?: React.ReactNode;
   replayOnHover?: boolean;
+  onClick?: () => void;
 };
 
 const ScrambleText = ({
@@ -17,13 +18,14 @@ const ScrambleText = ({
   scrambleOptions,
   children,
   replayOnHover,
+  onClick,
 }: Props) => {
   const defaultScrambleOptions: UseScrambleProps = {
     speed: 0.3,
     tick: 1,
     step: 1,
     scramble: 10,
-    seed: 0,
+    seed: 100,
     overdrive: 60,
     playOnMount: true,
     ...scrambleOptions,
@@ -42,6 +44,7 @@ const ScrambleText = ({
       className={className}
       ref={textRef}
       onMouseEnter={() => replayOnHover && textReplay()}
+      onClick={onClick}
     >
       {text || children}
     </p>

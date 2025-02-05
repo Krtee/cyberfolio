@@ -24,7 +24,7 @@ const Stage1 = () => {
       <div className="absolute top-0 left-0 w-full h-full z-20 ">
         <Canvas
           camera={{ position: [0, 0, 13], fov: 25 }}
-          className="w-screen h-screen"
+          className="w-screen h-screen overscroll-contain overflow-hidden"
         >
           <Physics
             interpolate
