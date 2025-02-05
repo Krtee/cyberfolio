@@ -223,7 +223,7 @@ const Stage2 = () => {
             className={`relative top-0 left-0 bg-red w-screen h-screen overflow-auto  overscroll-contain }`}
             style={
               aboutMePopUpIsOpen
-                ? {}
+                ? { clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)" }
                 : {
                     clipPath: createClipPathSquare(
                       window.innerWidth > 768 ? 25 : 50
