@@ -221,9 +221,15 @@ const Stage2 = () => {
           <div
             ref={aboutMeMaskRef}
             className={`relative top-0 left-0 bg-red w-screen h-screen overflow-auto  overscroll-contain }`}
-            style={{
-              clipPath: createClipPathSquare(window.innerWidth > 768 ? 25 : 50),
-            }}
+            style={
+              aboutMePopUpIsOpen
+                ? {}
+                : {
+                    clipPath: createClipPathSquare(
+                      window.innerWidth > 768 ? 25 : 50
+                    ),
+                  }
+            }
             onClick={() => {
               !aboutMePopUpIsOpen && onOpenAboutMePopUp();
             }}
