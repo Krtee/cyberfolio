@@ -55,7 +55,7 @@ function App() {
           });
         }}
       >
-        <LoadingScreen loaded={!showLoading} />
+        <LoadingScreen />
       </Transition>
       <ReactLenis
         root
