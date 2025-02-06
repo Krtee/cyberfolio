@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useScramble, UseScrambleProps } from "use-scramble";
+import { useLoadedState } from "../utils/state/LoadedState";
 
 type Props = {
   className?: string;
@@ -30,6 +31,8 @@ const ScrambleText = ({
     playOnMount: true,
     ...scrambleOptions,
   };
+  const { GLTFloaded } = useLoadedState();
+
   const { ref: textRef, replay: textReplay } = useScramble({
     text: text || (children as string),
     ...defaultScrambleOptions,
@@ -38,6 +41,10 @@ const ScrambleText = ({
   useEffect(() => {
     if (shouldReplay) textReplay();
   }, [shouldReplay]);
+
+  useEffect(() => {
+    if (GLTFloaded) textReplay();
+  }, [GLTFloaded]);
 
   return (
     <p

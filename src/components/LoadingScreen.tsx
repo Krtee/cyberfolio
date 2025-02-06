@@ -3,9 +3,10 @@ import { useEffect } from "react";
 
 type Props = {
   loadingStatus: number;
+  loaded: boolean;
 };
 
-function LoadingScreen({ loadingStatus }: Props) {
+function LoadingScreen({ loadingStatus, loaded }: Props) {
   const lenis = useLenis();
   const loadingBarWidth =
     window.innerWidth <= 768 ? window.innerWidth / 2 : window.innerWidth / 5;
@@ -30,7 +31,9 @@ function LoadingScreen({ loadingStatus }: Props) {
           <div
             className={`h-full bg-black relative`}
             style={{
-              width: `${(loadingBarWidth * loadingStatus) / 100}px`,
+              width: `${
+                (loadingBarWidth * (loaded ? 100 : loadingStatus)) / 100
+              }px`,
             }}
           >
             <p className="akira absolute bottom-[-20px] right-0">

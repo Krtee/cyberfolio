@@ -20,7 +20,7 @@ import { useLenis } from "lenis/react";
 import { MeshLineGeometry, MeshLineMaterial } from "meshline";
 import { useEffect, useRef, useState } from "react";
 import { CatmullRomCurve3, Mesh, Quaternion, Vector2, Vector3 } from "three";
-import { TV10 } from "./Tv10";
+import { TVModel } from "./TVModel";
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 
@@ -438,7 +438,7 @@ export function CableTV() {
               );
             }}
           >
-            <TV10 />
+            <TVModel />
           </group>
         </RigidBody>
       </group>

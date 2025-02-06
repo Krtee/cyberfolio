@@ -1,3 +1,4 @@
+import { useGLTF } from "@react-three/drei";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,14 +10,28 @@ import HitMeUpComponent from "./components/HitMeUpComponent";
 import LoadingScreen from "./components/LoadingScreen";
 import Stage1 from "./components/Stage1";
 import Stage2 from "./components/Stage2";
+import { useLoadedState } from "./utils/state/LoadedState";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(ScrollToPlugin);
 
 function App() {
+  const { GLTFloaded, setGLTFLoaded } = useLoadedState();
   const [showLoading, setShowLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState<number>(0);
   const lenisRef = useRef<LenisRef>(null);
+
+  useGLTF.preload("/tv10-transformed.glb", true, true, (loader) => {
+    loader.manager.onLoad = () => setGLTFLoaded(true);
+  });
+
+  useEffect(() => {
+    if (GLTFloaded) {
+      setLoadingProgress(100);
+      setShowLoading(false);
+    }
+  }, [GLTFloaded]);
+
   useEffect(() => {
     function update(time: number) {
       lenisRef.current?.lenis?.raf(time * 1000);
@@ -38,8 +53,6 @@ function App() {
           setLoadingProgress(loadingProgress + toAdd);
         }
       }, 100);
-    } else {
-      setShowLoading(false);
     }
   }, [loadingProgress]);
 
@@ -57,7 +70,7 @@ function App() {
           });
         }}
       >
-        <LoadingScreen loadingStatus={loadingProgress} />
+        <LoadingScreen loadingStatus={loadingProgress} loaded={!showLoading} />
       </Transition>
       <ReactLenis
         root
@@ -73,13 +86,9 @@ function App() {
         }}
         className="relative"
       >
-        {!showLoading && (
-          <>
-            <Stage1 />
-            <Stage2 />
-            <HitMeUpComponent />
-          </>
-        )}
+        <Stage1 />
+        <Stage2 />
+        <HitMeUpComponent />
       </ReactLenis>
     </>
   );
