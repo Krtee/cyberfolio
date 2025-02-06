@@ -1,15 +1,14 @@
 import { useLenis } from "lenis/react";
 import { useEffect } from "react";
+import ScrambleText from "./ScrambleText";
 
 type Props = {
-  loadingStatus: number;
   loaded: boolean;
 };
 
-function LoadingScreen({ loadingStatus, loaded }: Props) {
+function LoadingScreen({ loaded }: Props) {
   const lenis = useLenis();
-  const loadingBarWidth =
-    window.innerWidth <= 768 ? window.innerWidth / 2 : window.innerWidth / 5;
+
   useEffect(() => {
     if (lenis) {
       lenis.stop();
@@ -27,19 +26,26 @@ function LoadingScreen({ loadingStatus, loaded }: Props) {
       data-scroll-ignore
     >
       <div className="corner-box w-full h-full  flex justify-center items-center ">
-        <div className="w-[50vw] md:w-[20vw] h-[50px]">
+        {/* {<div className="w-[50vw] md:w-[20vw] h-[50px]">
           <div
             className={`h-full bg-black relative`}
             style={{
-              width: `${
-                (loadingBarWidth * (loaded ? 100 : loadingStatus)) / 100
-              }px`,
+              width: `${(loadingBarWidth * loadingProgress) / 100}px`,
             }}
           >
             <p className="akira absolute bottom-[-20px] right-0">
-              {loadingStatus}
+              {loadingProgress}
             </p>
           </div>
+        </div>} */}
+        <div className="akira text-5xl md:text-7xl">
+          <ScrambleText
+            scrambleOptions={{
+              playOnMount: false,
+            }}
+          >
+            LOADING
+          </ScrambleText>
         </div>
       </div>
     </div>

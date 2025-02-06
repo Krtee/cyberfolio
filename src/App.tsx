@@ -18,7 +18,6 @@ gsap.registerPlugin(ScrollToPlugin);
 function App() {
   const { GLTFloaded, setGLTFLoaded } = useLoadedState();
   const [showLoading, setShowLoading] = useState(true);
-  const [loadingProgress, setLoadingProgress] = useState<number>(0);
   const lenisRef = useRef<LenisRef>(null);
 
   useGLTF.preload("/tv10-transformed.glb", true, true, (loader) => {
@@ -27,7 +26,6 @@ function App() {
 
   useEffect(() => {
     if (GLTFloaded) {
-      setLoadingProgress(100);
       setShowLoading(false);
     }
   }, [GLTFloaded]);
@@ -43,19 +41,6 @@ function App() {
     };
   }, []);
 
-  useEffect(() => {
-    if (loadingProgress < 100) {
-      setTimeout(() => {
-        let toAdd = Math.ceil(Math.random() * 20);
-        if (loadingProgress + toAdd > 100) {
-          setLoadingProgress(100);
-        } else {
-          setLoadingProgress(loadingProgress + toAdd);
-        }
-      }, 100);
-    }
-  }, [loadingProgress]);
-
   return (
     <>
       <Transition
@@ -70,7 +55,7 @@ function App() {
           });
         }}
       >
-        <LoadingScreen loadingStatus={loadingProgress} loaded={!showLoading} />
+        <LoadingScreen loaded={!showLoading} />
       </Transition>
       <ReactLenis
         root
