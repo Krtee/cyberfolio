@@ -7,9 +7,15 @@ type Props = {
   onClick?: () => void;
   onClose?: () => void;
   children: React.ReactNode;
+  backButtonColor?: string;
 };
 
-const GlitchPopUp = ({ onClick, onClose, children }: Props) => {
+const GlitchPopUp = ({
+  onClick,
+  onClose,
+  backButtonColor,
+  children,
+}: Props) => {
   const glitch = useGlitch({
     playMode: "always",
     timing: { duration: 2000, iterations: 1 },
@@ -42,6 +48,7 @@ const GlitchPopUp = ({ onClick, onClose, children }: Props) => {
         <div
           className="absolute top-10 left-10 cursor-pointer text-cement z-10"
           onClick={onClose}
+          style={{ color: backButtonColor }}
         >
           <ArrowBack />
         </div>

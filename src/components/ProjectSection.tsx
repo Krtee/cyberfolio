@@ -31,7 +31,7 @@ const ProjectSection = ({ title, imagePath, onClick }: Props) => {
         >
           <DistortionShader imagePath={imagePath} isHovered={isHovered} />
         </Canvas>
-        <p className="panel evangelion text-cement text-[100px] md:text-[150px] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 pointer-events-none	">
+        <p className="panel evangelion text-cement text-[80px] md:text-[120px] absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 pointer-events-none md:leading-[88px] leading-[60px] text-center w-full">
           {title}
         </p>
       </div>

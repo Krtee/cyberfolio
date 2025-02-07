@@ -7,8 +7,8 @@ const BüffelContent = () => {
       <p className="relative text-cement evangelion text-8xl md:text-[300px] text-center pt-40 md:pt-10 ">
         BÜFFEL & KOI
       </p>
-      <div className="relative translate-y-[-4%] md:translate-y-[-15%] mx-auto">
-        <div className="relative w-3/4  md:w-2/3 mx-auto">
+      <div className="relative translate-y-[-4%] md:translate-y-[-15%] xl:translate-y-[-9%] mx-auto">
+        <div className="relative w-3/4  max-w-[1100px] md:w-2/3 mx-auto">
           <video src="/videos/cutted.mp4" autoPlay loop muted />
         </div>
         <div className="relative w-full  h-fit flex flex-col md:flex-row md:px-40 gap-10 pt-10">

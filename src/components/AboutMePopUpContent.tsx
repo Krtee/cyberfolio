@@ -82,7 +82,7 @@ export const AboutMePopUpContent = ({ isOpen, onClose }: Props) => {
         <div
           className="flex-1 grid grid-cols-1 grid-rows-10  akira
          text-2xl md:text-5xl text-cement w-fit pb-10 md:pb-40 
-        m-auto"
+         ml-10 md:ml-0"
         >
           <ScrambleText text={isOpen ? "React" : ""} replayOnHover />
           <ScrambleText text={isOpen ? "Angular" : ""} replayOnHover />

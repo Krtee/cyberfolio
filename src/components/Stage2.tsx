@@ -53,6 +53,16 @@ const Stage2 = () => {
     playOnMount: false,
   });
 
+  const gsapHorizontalScrollXSpeed = (index: number) => {
+    if (direction * (index % 2 === 0 ? -1 : 1) < 0) {
+      if (window.innerWidth > 1280) {
+        return "-20%";
+      } else {
+        return "0%";
+      }
+    }
+    return "-40%";
+  };
   useGSAP(
     () => {
       textRefs.forEach((textRef, i) => {
@@ -64,7 +74,7 @@ const Stage2 = () => {
             end: "bottom top",
             onUpdate: (e) => (direction = e.direction * (i % 2 === 0 ? -1 : 1)),
           },
-          x: `${direction * (i % 2 === 0 ? -1 : 1) < 0 ? "0" : "-40"}%`,
+          x: gsapHorizontalScrollXSpeed(i),
         });
       });
     },
@@ -194,6 +204,8 @@ const Stage2 = () => {
           <p>Java</p>
           <p>Google Cloud</p>
           <p>SpringBoot</p>
+          <p>Java</p>
+          <p>Google Cloud</p>
         </div>
         <div
           className={scrollTextClasses + ` translate-x-[-60%]`}
@@ -262,23 +274,23 @@ const Stage2 = () => {
         >
           <ProjectSection
             imagePath={"/images/BKScreenshot.jpg"}
-            title={"Project"}
+            title={"BÜFFEL & KOI"}
             onClick={() => setProjectPopUpOpen(Project.BÜFFEL)}
           />
 
           <ProjectSection
             imagePath={"/images/FishThumbnail.png"}
-            title={"Project"}
+            title={"THE FISH SAUCE"}
             onClick={() => setProjectPopUpOpen(Project.THE_FISH_SAUCE)}
           />
           <ProjectSection
             imagePath={"/images/baby.jpg"}
-            title={"Project"}
+            title={"ANIMATION PROJECT"}
             onClick={() => setProjectPopUpOpen(Project.MONSTER_BABY)}
           />
           <ProjectSection
             imagePath={"/images/DevDuckCLIThumbnail.png"}
-            title={"Project"}
+            title={"CLI PROJECT"}
             onClick={() => setProjectPopUpOpen(Project.DEVDUCK_CLI)}
           />
         </div>
@@ -288,6 +300,9 @@ const Stage2 = () => {
           onClose={() => {
             setProjectPopUpOpen(false);
           }}
+          backButtonColor={
+            projectPopUpOpen === Project.DEVDUCK_CLI ? "black" : undefined
+          }
         >
           {projectPopUpOpen === Project.BÜFFEL && <BüffelContent />}
           {projectPopUpOpen === Project.MONSTER_BABY && <BabyContent />}

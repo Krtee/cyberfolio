@@ -140,12 +140,6 @@ const Stage1 = () => {
         <p className="chicago-lined text-[20em] xl:text-[30em] tracking-[-0.2em] leading-[0.8] text-center pr-5 ">
           01
         </p>
-        <p className="akira lined-red text-[3em]  xl:text-[5em] text-center leading-[0.8]">
-          SOUND
-        </p>
-        <p className="akira lined-red text-[2em] xl:text-[5em] text-center leading-[0.8]">
-          ONLY
-        </p>
       </div>
     </div>
   );

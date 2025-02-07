@@ -7,8 +7,8 @@ const FishSauceContent = () => {
       <p className="relative text-cement evangelion text-7xl md:text-[250px] text-center pt-40 md:pt-10 ">
         THE FISH SAUCE
       </p>
-      <div className=" relative translate-y-[-4%] md:translate-y-[-15%] mx-auto ">
-        <div className="relative  w-2/3 mx-auto">
+      <div className=" relative translate-y-[-4%] md:translate-y-[-15%] xl:translate-y-[-9%] mx-auto ">
+        <div className="relative  w-2/3 mx-auto max-w-[1100px]">
           <video
             src="/videos/banner_animation_desktop_cutted.mp4"
             autoPlay
