@@ -1,6 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef, useState } from "react";
+import ScrambleLink from "./ScrambleLink";
 import ScrambleText from "./ScrambleText";
 
 const HitMeUpComponent = () => {
@@ -20,7 +21,7 @@ const HitMeUpComponent = () => {
 
   return (
     <div
-      className="w-screen h-screen bg-cement flex flex-center"
+      className="w-screen h-screen bg-cement flex flex-center relative"
       ref={scrambleWrapperRef}
     >
       <div
@@ -51,6 +52,18 @@ const HitMeUpComponent = () => {
             window?.open("mailto:minh.vu.nguyenhotmail.de", "_blank")?.focus();
           }}
           replayOnHover
+        />
+      </div>
+      <div className="ml-auto w-fit absolute bottom-1 left-1 ">
+        <ScrambleLink
+          text="github/krtee"
+          href="https://github.com/Krtee"
+          className="akira text-xl"
+        />
+        <ScrambleLink
+          text="linkedin/minh-vu-nguyen"
+          href="https://www.linkedin.com/in/minh-vu-nguyen/"
+          className="akira text-xl"
         />
       </div>
     </div>
