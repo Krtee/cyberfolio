@@ -2,8 +2,8 @@ import { Environment, Lightformer } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/rapier";
 import { useEffect, useRef, useState } from "react";
-import { CableTV } from "./CableTV";
-import ScrambleText from "./ScrambleText";
+import { CableTV } from "../components/CableTV";
+import ScrambleText from "../components/ScrambleText";
 
 const Stage1 = () => {
   const [currentTime, setCurrentTime] = useState(new Date());

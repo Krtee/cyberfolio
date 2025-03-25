@@ -6,10 +6,10 @@ import { LenisRef, ReactLenis } from "lenis/react";
 import { useEffect, useRef, useState } from "react";
 import { Transition } from "react-transition-group";
 import "./App.scss";
-import HitMeUpComponent from "./components/HitMeUpComponent";
 import LoadingScreen from "./components/LoadingScreen";
-import Stage1 from "./components/Stage1";
-import Stage2 from "./components/Stage2";
+import HitMeUpComponent from "./sections/HitMeUpSection";
+import Stage1 from "./sections/Stage1Section";
+import Stage2 from "./sections/Stage2Section";
 import { useLoadedState } from "./utils/state/LoadedState";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -20,16 +20,25 @@ function App() {
   const [showLoading, setShowLoading] = useState(true);
   const lenisRef = useRef<LenisRef>(null);
 
+  /**
+   * Load GLTF
+   */
   useGLTF.preload("/tv10-transformed.glb", true, true, (loader) => {
     loader.manager.onLoad = () => setGLTFLoaded(true);
   });
 
+  /**
+   * Show loading screen when GLTF is not loaded
+   */
   useEffect(() => {
     if (GLTFloaded) {
       setShowLoading(false);
     }
   }, [GLTFloaded]);
 
+  /**
+   * Update Lenis on scroll
+   */
   useEffect(() => {
     function update(time: number) {
       lenisRef.current?.lenis?.raf(time * 1000);

@@ -51,10 +51,11 @@ export function CableTV() {
   const mainCableJ3 = useRef<RapierRigidBody>(null);
   const tv = useRef<RapierRigidBody>(null);
 
-  const smallCables = useTexture("textures/cableMat.png");
-  const mainCableTexture = useTexture("textures/wires.png");
-  const smallCableAlpha = useTexture("textures/alpha4.png");
-  const mainCableAlpha = useTexture("textures/alpha3.png");
+  const smallCablesTexture = useTexture("textures/cable2/cableMat.png");
+  const smallCableAlpha = useTexture("textures/cable3/alpha4.png");
+
+  const mainCableTexture = useTexture("textures/cable3/wires.png");
+  const mainCableAlpha = useTexture("textures/cable2/alpha3.png");
 
   const [curveMainCable] = useState(
     () =>
@@ -177,8 +178,14 @@ export function CableTV() {
     }
   }, [hovered, dragged]);
 
+  /**
+   * Updates the position of the main cable
+   */
   useFrame((state) => {
     if (dragged) {
+      /**
+       * Update the position of the TV
+       */
       vec.set(state.pointer.x, state.pointer.y, 0.5).unproject(state.camera);
       dir.copy(vec).sub(state.camera.position).normalize();
       vec.add(dir.multiplyScalar(state.camera.position.length()));
@@ -427,6 +434,11 @@ export function CableTV() {
               e.stopPropagation();
               drag(false);
             }}
+            onPointerLeave={(e: ThreeEvent<PointerEvent>) => {
+              lenis?.start();
+              e.stopPropagation();
+              drag(false);
+            }}
             onPointerDown={(e: ThreeEvent<PointerEvent>) => {
               lenis?.stop();
 
@@ -451,7 +463,7 @@ export function CableTV() {
           map={mainCableTexture}
           repeat={new Vector2(0.5, 1)}
           lineWidth={2}
-          alphaMap={smallCableAlpha}
+          alphaMap={mainCableAlpha}
           useAlphaMap={1}
           transparent
         />
@@ -462,10 +474,10 @@ export function CableTV() {
           depthTest={true}
           resolution={new Vector2(width, height)}
           useMap={1}
-          map={smallCables}
+          map={smallCablesTexture}
           repeat={new Vector2(1, 1)}
           lineWidth={1}
-          alphaMap={mainCableAlpha}
+          alphaMap={smallCableAlpha}
           useAlphaMap={1}
           transparent
         />
@@ -476,10 +488,10 @@ export function CableTV() {
           depthTest={true}
           resolution={new Vector2(width, height)}
           useMap={1}
-          map={smallCables}
+          map={smallCablesTexture}
           repeat={new Vector2(1, 1)}
           lineWidth={1}
-          alphaMap={mainCableAlpha}
+          alphaMap={smallCableAlpha}
           useAlphaMap={1}
           transparent
         />
@@ -490,10 +502,10 @@ export function CableTV() {
           depthTest={true}
           resolution={new Vector2(width, height)}
           useMap={1}
-          map={smallCables}
+          map={smallCablesTexture}
           repeat={new Vector2(1, 1)}
           lineWidth={1}
-          alphaMap={mainCableAlpha}
+          alphaMap={smallCableAlpha}
           useAlphaMap={1}
           transparent
         />
@@ -504,10 +516,10 @@ export function CableTV() {
           depthTest={true}
           resolution={new Vector2(width, height)}
           useMap={1}
-          map={smallCables}
+          map={smallCablesTexture}
           repeat={new Vector2(1, 1)}
           lineWidth={1}
-          alphaMap={mainCableAlpha}
+          alphaMap={smallCableAlpha}
           useAlphaMap={1}
           transparent
         />

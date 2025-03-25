@@ -3,13 +3,13 @@ import gsap from "gsap";
 import { useLenis } from "lenis/react";
 import { useRef, useState } from "react";
 import { useScramble } from "use-scramble";
+import GlitchPopUp from "../components/GlitchPopUp";
+import AboutMePopUpContent from "../components/popups/AboutMePopUpContent";
+import BabyContent from "../components/popups/BabyContent";
+import BüffelContent from "../components/popups/BüffelContent";
+import CLIContent from "../components/popups/CLIContent";
+import FishSauceContent from "../components/popups/FishSauceContent";
 import { createClipPathRectangle, createClipPathSquare } from "../utils/helper";
-import AboutMePopUpContent from "./AboutMePopUpContent";
-import BabyContent from "./BabyContent";
-import BüffelContent from "./BüffelContent";
-import CLIContent from "./CLIContent";
-import FishSauceContent from "./FishSauceContent";
-import GlitchPopUp from "./GlitchPopUp";
 import ProjectSection from "./ProjectSection";
 
 enum Project {

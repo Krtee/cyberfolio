@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { useState } from "react";
-import DistortionShader from "./DistortionShader";
+import DistortionShader from "../components/DistortionShader";
 
 type Props = {
   imagePath: string;

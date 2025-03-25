@@ -5,6 +5,9 @@ import ScrambleText from "./ScrambleText";
 function LoadingScreen() {
   const lenis = useLenis();
 
+  /**
+   * stop lenis when loading screen is open
+   */
   useEffect(() => {
     if (lenis) {
       lenis.stop();

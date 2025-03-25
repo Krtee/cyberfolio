@@ -18,8 +18,8 @@ const GlitchPopUp = ({
 }: Props) => {
   const glitch = useGlitch({
     playMode: "always",
-    timing: { duration: 2000, iterations: 1 },
-    glitchTimeSpan: { start: 0, end: 0.4 },
+    timing: { duration: 1000, iterations: 1 },
+    glitchTimeSpan: { start: -0.2, end: 0.4 },
     slice: {
       hueRotate: true,
     },

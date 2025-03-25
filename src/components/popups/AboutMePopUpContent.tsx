@@ -1,7 +1,7 @@
 import { useLenis } from "lenis/react";
 import { useEffect } from "react";
-import ArrowBack from "../assets/arrow_back.svg";
-import ScrambleText from "./ScrambleText";
+import ArrowBack from "../../assets/arrow_back.svg";
+import ScrambleText from "../ScrambleText";
 type Props = {
   isOpen: boolean;
   onClose: () => void;
@@ -10,6 +10,19 @@ type Props = {
 export const AboutMePopUpContent = ({ isOpen, onClose }: Props) => {
   const lenis = useLenis();
 
+  const scrambleOptions = {
+    speed: 0.6,
+    tick: 1,
+    step: 10,
+    scramble: 4,
+    seed: 0,
+    overdrive: 60,
+    playOnMount: true,
+  };
+
+  /**
+   * stop lenis when popup is open
+   */
   useEffect(() => {
     if (!lenis) return;
     if (isOpen) {
@@ -24,16 +37,6 @@ export const AboutMePopUpContent = ({ isOpen, onClose }: Props) => {
       }
     };
   }, [isOpen, lenis]);
-
-  const scrambleOptions = {
-    speed: 0.6,
-    tick: 1,
-    step: 10,
-    scramble: 4,
-    seed: 0,
-    overdrive: 60,
-    playOnMount: true,
-  };
 
   return (
     <div
